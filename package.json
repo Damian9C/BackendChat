@@ -1,0 +1,19 @@
+{
+  "name": "backendchat",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/Damian9C/BackendChat.git"
+  },
+  "author": "Carlos Damian Chavez Gonzalez <carlos_dami12@live.com>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Damian9C/BackendChat/issues"
+  },
+  "homepage": "https://github.com/Damian9C/BackendChat#readme"
+}
