@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
-const URI = process.env.MongoDBUrl;
+const URI = process.env.MONGOURL;
 
 mongoose.connect(URI, {
     useNewUrlParser: true,
