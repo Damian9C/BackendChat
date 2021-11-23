@@ -37,11 +37,23 @@ messageCtrl.createMessage = async (req, res) => {
 
 messageCtrl.updateMessage = async (req, res) => {
     try{
-        const miModelo = await messageModel.findById(req.params.id)
+        /*const miModelo = await messageModel.findById(req.params.id)
         miModelo.user = req.body.users;
         miModelo.conversation = req.body.conversation;
 
-        miModelo.save();
+        console.log(req.body)
+        await miModelo.save()*/
+
+        console.log(req.body)
+
+        let request = await messageModel.updateOne({ id: req.body.user}, {
+            $push:{
+                conversation: {
+                    message: req.body.message,
+                    user: req.body.user,
+                }
+            }
+        })
 
         res.status(200).send('Message Updated');
     }catch (e) {
