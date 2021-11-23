@@ -5,18 +5,18 @@ const messageModel = require('../models/messages');
 messageCtrl.getMessages = async (req, res) => {
     try{
         const messages = await messageModel.find();
-        res.json({messages, status:200});
+        res.status(200).json(messages);
     }catch (e) {
-        res.json({status: 400});
+        res.status(400);
     }
 };
 
 messageCtrl.getMessage = async (req, res) => {
     try{
         const user = await messageModel.findById(req.params.id)
-        res.json({user, status: 200});
+        res.status(200).json(user);
     }catch (e) {
-        res.json({status: 400});
+        res.status(400);
     }
 };
 
@@ -29,23 +29,23 @@ messageCtrl.createMessage = async (req, res) => {
             conversation,
         });
         await newMessage.save();
-        res.json({message: 'Post request', status: 200});
+        res.status(200).json({message: 'Post request'});
     }catch (e) {
-        res.json({status: 400});
+        res.status(400);
     }
 };
 
 messageCtrl.updateMessage = async (req, res) => {
     try{
-        const {users, conversation} = req.body;
-        messageModel.findOneAndUpdate(req.params.id, {
-            users,
-            conversation
-        });
+        const miModelo = await messageModel.findById(req.params.id)
+        miModelo.user = req.body.users;
+        miModelo.conversation = req.body.conversation;
 
-        res.json({status: 200})
+        miModelo.save();
+
+        res.status(200).send('Message Updated');
     }catch (e) {
-        res.json({status: 400})
+        res.status(400);
     }
 }
 

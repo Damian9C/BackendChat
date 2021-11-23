@@ -57,8 +57,6 @@ usersCtrl.loginUser = async (req, res) => {
     try{
         userModel.findOne({email: req.body.email}).then((e) => {
             bcrypt.compare(req.body.password, e.password, (err, same) => {
-                console.log(err)
-                console.log(same)
                 if (err){
                     res.status(500).send('Error al Autenticar');
                 }else if (same){
